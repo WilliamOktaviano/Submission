@@ -22,6 +22,7 @@
         android:layout_toEndOf="@id/img_item_photo"
         android:layout_toRightOf="@id/img_item_photo"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/tv_item_name"
             android:layout_width="wrap_content"
@@ -30,13 +31,14 @@
             android:textSize="16sp"
             android:textStyle="bold"
             tools:text="@string/objekwisata_name" />
+
         <TextView
             android:id="@+id/tv_item_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="5"
             android:justificationMode="inter_word"
+            android:maxLines="5"
             tools:text="@string/lokasi" />
     </LinearLayout>
 

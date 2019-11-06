@@ -1,30 +1,15 @@
 package pemrogramanmobile.wisatajabodetabek;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
-
-    private ArrayList<TempatWisata> listdetail = new ArrayList<>();
 
     ImageView imgObjekWisata;
     TextView tvNamaObjek;
@@ -43,10 +28,11 @@ public class DetailActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Wisata Jabodetabek");
         }
 
-        Bundle extras = getIntent().getExtras();
-        String[] arrayList = extras.getStringArray("detail");
-        imgObjekWisata.setImageURI(Uri.parse(arrayList[0]));
-        tvNamaObjek.setText(arrayList[1]);
-        tvDetailObjek.setText(arrayList[2]);
+        Intent i = getIntent();
+        TempatWisata tempatWisata = i.getParcelableExtra("TempatWisata");
+
+        Glide.with(this).load(tempatWisata.getDetailphoto()).into(imgObjekWisata);
+        tvNamaObjek.setText(tempatWisata.getObjekwisata_name());
+        tvDetailObjek.setText(tempatWisata.getLokasi());
     }
 }

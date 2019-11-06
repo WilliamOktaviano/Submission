@@ -1,16 +1,14 @@
 package pemrogramanmobile.wisatajabodetabek;
 
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -19,9 +17,14 @@ import java.util.ArrayList;
 
 public class ListObjekWisataAdapter extends RecyclerView.Adapter<ListObjekWisataAdapter.ListViewHolder> {
     private ArrayList<TempatWisata> listObjekWisata;
+    private OnItemClickCallback onItemClickCallback;
 
     public ListObjekWisataAdapter(ArrayList<TempatWisata> list) {
         this.listObjekWisata = list;
+    }
+
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
     }
 
     @NonNull
@@ -32,8 +35,8 @@ public class ListObjekWisataAdapter extends RecyclerView.Adapter<ListObjekWisata
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListViewHolder holder, final int position) {
-        final TempatWisata tempatWisata = listObjekWisata.get(position);
+    public void onBindViewHolder(@NonNull final ListViewHolder holder, int position) {
+        TempatWisata tempatWisata = listObjekWisata.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(tempatWisata.getDetailphoto())
                 .apply(new RequestOptions().override(55, 55))
@@ -41,13 +44,10 @@ public class ListObjekWisataAdapter extends RecyclerView.Adapter<ListObjekWisata
         holder.tvName.setText(tempatWisata.getObjekwisata_name());
         holder.tvFrom.setText(tempatWisata.getLokasi());
 
-        holder.btnDetail.setOnClickListener(new View.OnClickListener()
-        {
+        holder.btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), DetailActivity.class);
-                intent.putExtra("detail", TempatWisataDetail.getListData());
-                view.getContext().startActivity(intent);
+            public void onClick(View v) {
+                onItemClickCallback.onItemClicked(listObjekWisata.get(holder.getAdapterPosition()));
             }
         });
     }
@@ -57,10 +57,15 @@ public class ListObjekWisataAdapter extends RecyclerView.Adapter<ListObjekWisata
         return listObjekWisata.size();
     }
 
-    static class ListViewHolder extends RecyclerView.ViewHolder {
+    public interface OnItemClickCallback {
+        void onItemClicked(TempatWisata data);
+    }
+
+    class ListViewHolder extends RecyclerView.ViewHolder {
         ImageView imgPhoto;
         TextView tvName, tvFrom;
         Button btnDetail;
+
         ListViewHolder(View itemView) {
             super(itemView);
             imgPhoto = itemView.findViewById(R.id.img_item_photo);

@@ -1,13 +1,11 @@
 package pemrogramanmobile.wisatajabodetabek;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,5 +48,19 @@ public class MainActivity extends AppCompatActivity {
         rvObjekWisata.setLayoutManager(new LinearLayoutManager(this));
         ListObjekWisataAdapter listObjekWisataAdapter = new ListObjekWisataAdapter(list);
         rvObjekWisata.setAdapter(listObjekWisataAdapter);
+
+        listObjekWisataAdapter.setOnItemClickCallback(new ListObjekWisataAdapter.OnItemClickCallback() {
+            @Override
+            public void onItemClicked(TempatWisata data) {
+                showDetailTempatWisata(data);
+            }
+        });
+    }
+
+    private void showDetailTempatWisata(TempatWisata tempatwisata) {
+        Intent i = new Intent(this, DetailActivity.class);
+        i.putExtra("TempatWisata", tempatwisata);
+        startActivity(i);
+
     }
 }

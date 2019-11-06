@@ -16,13 +16,15 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/img_objek_wisata"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                tools:src="@drawable/pixel_google" />
+                tools:src="@drawable/placeholder" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,25 +45,25 @@
             android:id="@+id/tv_objek_wisata"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            tools:text="Objek Wisata"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginBottom="8dp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            tools:text="Objek Wisata" />
 
         <TextView
             android:id="@+id/tv_objek_wisata_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Detail Objek Wisata"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:lineSpacingMultiplier="1"
             android:justificationMode="inter_word"
-            android:textColor="@android:color/black"/>
+            android:lineSpacingMultiplier="1"
+            android:textColor="@android:color/black"
+            tools:text="Detail Objek Wisata" />
 
     </LinearLayout>
 

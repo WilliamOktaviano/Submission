@@ -1,8 +1,8 @@
 package pemrogramanmobile.wisatajabodetabek;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AboutMe extends AppCompatActivity {
 
